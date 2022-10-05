@@ -1,0 +1,21 @@
+#if i elif - sortowanie od największej do najmniejszej
+a=int(input("enter a "))
+b=int(input("enter b "))
+c=int(input("enter c "))
+
+if a>b:
+    if b>c:
+        print(a,b,c)
+    elif a>c:
+        print(a,c,b)
+    else:
+        print(c,a,b)
+elif b>c:
+    if c>a:
+        print(b,c,a)
+    else:
+        print(b,a,c)
+else:
+    print(c,b,a)
+
+
