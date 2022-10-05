@@ -1,0 +1,30 @@
+#algorytm dzielący imiona na żeńskie i męskie
+from operator import truediv
+
+
+base_names =["Weronika","Marcin","Marta","Karol","Boleslaw","Izabela"]
+woman_names=[]
+man_names=[]
+aditional_names=[]
+odpowiedz1=input("czy chcesz wprowadzic swoje imiona? yes or no ")
+odpowiedz2=0
+if odpowiedz1 == "yes":
+    while odpowiedz2== 0:
+        aditional_names.append(input("podaj imie, ktore chcesz dodac do listy "))
+        odpowiedz=input("czy chcesz dodać kolejne imie? yes or no ")
+        if odpowiedz=="yes":
+            continue
+        elif odpowiedz=="no":
+            odpowiedz2=1
+        else:
+            continue
+    
+
+names=base_names+aditional_names
+for i in range(len(names)):
+        if names[i][-1]=="a":
+            woman_names.append(names[i])
+        else:
+            man_names.append(names[i])
+
+print("imiona kobiece to: ",woman_names,"imiona meskie to: ",    man_names)
