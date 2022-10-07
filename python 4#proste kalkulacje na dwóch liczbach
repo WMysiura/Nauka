@@ -1,0 +1,15 @@
+print("enter two numbers")
+a=int(input("first number:"))
+b=int(input("second number:"))
+choose=int(input("what do you want to do with these numbers\n 1 multiply\n 2 divide\n 3 subtract\n4 add\n 5 add to the power"))
+match choose:
+    case 1:
+        print(a*b)
+    case 2:
+        print(a/b)
+    case 3:
+        print(a-b)
+    case 4:
+        print(a+b)
+    case 5:
+        print(a**b)
