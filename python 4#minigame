@@ -1,0 +1,24 @@
+#mini gra 
+a = set("avcsjwkafiwksjzjzjDsksjakzjakskfjsmzkasmck")
+b =set("Do you know that i like kiwi juice so much. i also have one for you")
+i=0
+good_answer=(a-b)
+print(good_answer)
+while i == 0:
+    print("find a letter from the set:\n",a," that is not in the sentence:\n Do you know that i like kiwi juice so much. i also have one for you")
+    answer=input()
+    if answer=="z":
+        print("Congratulations you found it")
+        break
+    else:
+        answer=(input("Wanna try again? Or see the answer... enter try again or answer"))
+        if answer=="try again":
+            continue
+        elif answer =="answer":
+            print("the answer is: ",(good_answer))
+            break
+        else:
+            print("you don't choosed anything - Starting from the beggining")
+            continue
+
+        
