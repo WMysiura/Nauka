@@ -1,0 +1,157 @@
+from ast import Return
+from bdb import Breakpoint
+from itertools import count
+from tkinter import END
+#algorytm zakupów online
+shopping_list=[]
+i=0
+fridge_list=[]
+tv_list=[]
+dishwasher_list=[]
+
+        
+
+def choose1():
+   choose1=(input("you've choosed rtv/agd \n 1.fridge \n 2.TV \n 3.dishwasher\n 0.quit \n"))
+   match choose1:
+                case "0":
+                    return shopping_list
+                    
+                case "1":
+                    p=int(input("how many?"))
+                    if p >0:
+                        ammount=str(p)
+                        shopping_list.append("fridge: "+ammount)
+                        return shopping_list
+                case "2":
+                    p=int(input("how many?"))
+                    if p >0:
+                        ammount=str(p)
+                        shopping_list.append("tv: "+ammount)
+                        return shopping_list
+                case "3":
+                    p=int(input("how many?"))
+                    if p >0:
+                        ammount=str(p)
+                        shopping_list.append("dishwasher: "+ammount)
+                        return shopping_list
+
+def choose2():
+    choose2=(input("you've choosed fruits \n 1.banana \n 2.watermelon \n 3.apple\n 0.quit \n"))
+    match choose2:
+        case "0":
+            return shopping_list
+        case "1":
+            p=int(input("how many?"))
+            if p >0:
+                ammount=str(p)
+                shopping_list.append("banana: "+ammount)
+                return shopping_list
+        case "2":
+            p=int(input("how many?"))
+            if p >0:
+                ammount=str(p)
+                shopping_list.append("watermelon: "+ammount)
+                return shopping_list
+        case "3":
+            p=int(input("how many?"))
+            if p >0:
+                ammount=str(p)
+                shopping_list.append("apple: "+ammount)
+                return shopping_list
+
+def choose3():
+    choose3=(input("you've choosed vegetables \n 1.cucumber \n 2.potatoe \n 3.carrot\n 0.quit \n"))
+    match choose3:
+        case "0":
+            return shopping_list
+        case "1":
+            p=int(input("how many?"))
+            if p >0:
+                ammount=str(p)
+                shopping_list.append("cucumber: "+ammount)
+                return shopping_list
+        case "2":
+            p=int(input("how many?"))
+            if p >0:
+                ammount=str(p)
+                shopping_list.append("potatoe: "+ammount)
+                return shopping_list
+        case "3":
+            p=int(input("how many?"))
+            if p >0:
+                ammount=str(p)
+                shopping_list.append("carrot: "+ammount)
+                return shopping_list
+
+def choose4():
+    choose4=(input("you've choosed candys \n 1.lolipop \n 2.chocolate \n 3.apple pie\n 0.quit \n"))
+    match choose4:
+        case "0":
+            return shopping_list
+        case "1":
+            p=int(input("how many?"))
+            if p >0:
+                ammount=str(p)
+                shopping_list.append("lolipop: "+ammount)
+                return shopping_list
+        case "2":
+            p=int(input("how many?"))
+            if p >0:
+                ammount=str(p)
+                shopping_list.append("chocolate: "+ammount)
+                return shopping_list
+        case "3":
+            p=int(input("how many?"))
+            if p >0:
+                ammount=str(p)
+                shopping_list.append("apple pie: "+ammount)
+                return shopping_list
+
+def choose5():
+    choose5=(input("you've choosed animalkss \n 1.hamster \n 2.parrot \n 3.dog\n 0.quit \n"))
+    match choose5:
+        case "0":
+            return shopping_list
+        case "1":
+            p=int(input("how many?"))
+            if p >0:
+                ammount=str(p)
+                shopping_list.append("hamster: "+ammount)
+                return shopping_list
+        case "2":
+            p=int(input("how many?"))
+            if p >0:
+                ammount=str(p)
+                shopping_list.append("parrot: "+ammount)
+                return shopping_list
+        case "3":
+            p=int(input("how many?"))
+            if p >0:
+                ammount=str(p)
+                shopping_list.append("dog: "+ammount)
+                return shopping_list
+
+while i==0:
+    answer1=(input("WELCOME IN SHOP \n What you want to buy? \n 1.rtv/agd \n 2.fruits \n 3.vegetbles \n 4.candys \n 5.animals\n"))
+    match answer1:
+        case "0":
+            break
+        case "1":
+            choose1()
+            continue
+        case "2":
+            choose2()
+            continue
+        case "3":
+            choose3()
+            continue
+        case "4":
+            choose4()
+            continue
+        case "5":
+            choose5()
+            continue
+        
+        
+print(shopping_list)
