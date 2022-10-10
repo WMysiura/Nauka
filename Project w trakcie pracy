@@ -1,0 +1,131 @@
+# Zadanie na ocenę
+
+# Aplikacja matematyczna do obliczania pól powierzchni i objętości figur geometrycznych.
+
+# Scenariusz działania programu:
+
+# użytkownik uruchamia aplikację z konsoli
+#  math --help
+
+# dostaje help:
+# Aplikacja Math 1.0
+# -i tryb interaktywny
+# -f –figure = enum[square,triangle, circle, cylinder, cube]
+# -p –params = list of parameters depends on figure
+# -u –unit = enum[meters, centimeters, millimeters]
+
+# tryb interaktywny
+# math -i
+
+# Krok 1. Wybierz figure:
+# 1. square
+# 2. triangle
+# 3. circle
+# 4. cube
+# 5. cylinder
+# 6. cuboid
+
+# Krok 2. Wybrałeś figure: cube
+# Podaj wartości parametrów:
+# a = ??
+
+# Krok 3:
+# wybierz jednostkę:
+# 1. metry
+# 2. centymetry
+# 3. milimetry
+
+# Krok 4:
+# Wynik:
+# Cube area = xxx
+# Cube volume = xxx
+
+# Tryb konsolowy przez argumenty
+# to wywołanie wygląda tak:
+# math --figure=square params={a=5} unit=meter
+# Results : square area = 25m^2
+
+
+# Dodatkowe wymagania
+# - wszystkie metody wyliczające mają mieć testy jednostkowe
+# - trzeba wykorzystać podstawowe paradygmaty programowania obiektowego
+# - interfej aplikacji i kod w języku angielskim
+# - program umieszczony na githubie
+import argparse
+from enum import Enum
+
+
+
+
+
+
+class Figures (Enum):
+    
+    Square = "square"
+    Triangle = "triangle" 
+    Circle = "circle"
+    Cylinder = "cylinder"
+    Cube = "cube"
+    Cuboid = "cuboid"
+    
+class Units(Enum):
+    
+    Meters = "meters"
+    Centimeters = "centimeters"
+    Millimeters = "millimeters"
+
+def __Units__():
+    units = Units(input("choose the unit: meters, centimeters millimeters:\n"))
+    y = Units
+    match units:
+        case units.Meters:
+            print("-"*40)
+            print("thats work")
+        case units.Centimeters:
+            print("-"*40)
+            print("that works too")
+        case units.Millimeters:
+            print("-"*40)
+            print("that also works")
+
+def __Figures__():
+    figures = Figures(input("choose the figure:square, triangle, circle, cylinder, cube, cuboid:\n"))
+    x = Figures
+    match figures:
+        case figures.Square:
+            print("-"*40)
+            __Units__()
+
+        case figures.Triangle:
+            print("-"*40)
+            __Units__()
+            print()
+        case figures.Circle:
+            print("-"*40)
+            __Units__()
+        case figures.Cylinder:
+            print("-"*40)
+            __Units__()
+        case figures.Cube:
+            print("-"*40)
+            __Units__()
+        case figures.Cuboid:
+            print("-"*40)
+            __Units__()
+
+parser = argparse.ArgumentParser(description='Aplication Math 1.0')
+parser.add_argument("-i","--interactive", help="interactive mode", default = "def")
+parser.add_argument("-f","--figures", help =" enum[square,triangle, circle, cylinder, cube]", default = "def")
+parser.add_argument("-p","--params", help= "list of parameters depends on figure", default = "def")
+parser.add_argument("-u","--unit", help = "enum[meters, centimeters, millimeters]", default = "def")
+
+my_args = parser.parse_args()
+print(my_args)
+try:
+
+    if my_args.i != "def":
+        print("good")
+    
+except:
+    if my_args.interactive != "def":
+        print("")
