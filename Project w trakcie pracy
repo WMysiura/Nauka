@@ -129,3 +129,262 @@ try:
 except:
     if my_args.interactive != "def":
         print("")
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
+Wersja 2 w trakcie pracy
+# Zadanie na ocenę
+
+# Aplikacja matematyczna do obliczania pól powierzchni i objętości figur geometrycznych.
+
+# Scenariusz działania programu:
+
+# użytkownik uruchamia aplikację z konsoli
+#  math --help
+
+# dostaje help:
+# Aplikacja Math 1.0
+# -i tryb interaktywny
+# -f –figure = enum[square,triangle, circle, cylinder, cube]
+# -p –params = list of parameters depends on figure
+# -u –unit = enum[meters, centimeters, millimeters]
+
+# tryb interaktywny
+# math -i
+
+# Krok 1. Wybierz figure:
+# 1. square
+# 2. triangle
+# 3. circle
+# 4. cube
+# 5. cylinder
+# 6. cuboid
+
+# Krok 2. Wybrałeś figure: cube
+# Podaj wartości parametrów:
+# a = ??
+
+# Krok 3:
+# wybierz jednostkę:
+# 1. metry
+# 2. centymetry
+# 3. milimetry
+
+# Krok 4:
+# Wynik:
+# Cube area = xxx
+# Cube volume = xxx
+
+# Tryb konsolowy przez argumenty
+# to wywołanie wygląda tak:
+# math --figure=square params={a=5} unit=meter
+# Results : square area = 25m^2
+
+
+# Dodatkowe wymagania
+# - wszystkie metody wyliczające mają mieć testy jednostkowe
+# - trzeba wykorzystać podstawowe paradygmaty programowania obiektowego
+# - interfej aplikacji i kod w języku angielskim
+# - program umieszczony na githubie
+import argparse
+import unittest
+from enum import Enum
+from pickle import TRUE
+from typing import List
+volume:int
+triangle_area=0
+a:int
+b:int
+c:int
+
+class Figure (Enum):
+    
+    Square = "square"
+    Triangle = "triangle" 
+    Circle = "circle"
+    Cylinder = "cylinder"
+    Cube = "cube"
+    Cuboid = "cuboid"
+    
+class Units(Enum):
+    
+    Meters = "meters"
+    Centimeters = "centimeters"
+    Millimeters = "millimeters"
+    
+# def __square_area__(a,b):
+#     print("square area=",a*b)
+
+# def __triangle_area_(a,h):
+#     return triangle_area==(a*h)/2
+
+
+def __Units__(area,volume):
+    
+    units = Units(input("choose the unit: meters, centimeters millimeters:\n"))
+    y = Units
+    match units:
+        case units.Meters:
+            
+            print("-"*40)
+            print("area=",area,"m^2\n volume=",volume,"m^3")
+        case units.Centimeters:
+            print("-"*40)
+            print("area=",area,"cm^2\n volume=",volume,"cm^3")
+        case units.Millimeters:
+            print("-"*40)
+            print("area=",area,"mm^2\n volume=",volume,"mm^3")
+
+def __Figures__():
+    figure = Figure(input("choose the figure:square, triangle, circle, cylinder, cube, cuboid:\n"))
+    x = Figure
+    match figure:
+        case figure.Square:
+            a=int(input("enter a"))
+            b=int(input("enter b"))
+            area=a**2
+            print("-"*40)
+            __Units__(area,volume=0)
+
+        case figure.Triangle:
+            print("-"*40)
+            a=int(input("enter a"))
+            h=int(input("enter h"))
+            area=(a*h)/2
+            __Units__(area,volume=0)
+            print()
+        case figure.Circle:
+            print("-"*40)
+            r=int(input("enter r"))
+            area=3.14*r**2
+            __Units__(area,volume=0)
+        case figure.Cylinder:
+            print("-"*40)
+            r=int(input("enter r"))
+            h=int(input("enter h"))
+            area=2*3.14*r**2+h*(2*r*3.14)
+            volume=3.14*r**2*h
+            __Units__(area,volume)
+        case figure.Cube:
+            print("-"*40)
+            a=int(input("enter a"))
+            h=int(input("enter h"))
+            area=6*a**2
+            volume=area*h
+            __Units__(area,volume)
+        case figure.Cuboid:
+            print("-"*40)
+            a=int(input("enter a"))
+            b=int(input("enter b"))
+            h=int(input("enter h"))
+            area=2*(a*h)+2*(a*b)+2*(b*h)
+            volume=a*b*h
+            __Units__(area,volume)
+
+parser = argparse.ArgumentParser(prog="math",usage='%(prog)s [options]', description='Aplication Math 1.0')
+parser.add_argument("-i","--interactive",action="store_true", help="interactive mode")
+parser.add_argument("-f","--figure", help =" enum[square,triangle, circle, cylinder, cube]", default = "def")
+parser.add_argument("-p","--params",type=list,help= "list of parameters depends on figure", default = [])
+parser.add_argument("-u","--unit",type=str, help = "enum[meters, centimeters, millimeters]", default = "def")
+
+
+my_args = parser.parse_args()
+converted=vars(my_args)
+print(converted)
+
+# try:
+
+#     if my_args.i == "0":
+#         print("good")
+    
+# except:
+#     if my_args.interactive != "def":
+#         print("")
+# while my_args.i==True:
+    # __Figures__
+# if my_args.i==True:
+#     figure=my_args.i
+#     match figure:
+#         case figure.Square:
+#             print("-"*40)
+#             units=my_args.p
+#             match units:
+#                 case units.Meters:
+#                     print("-"*40)
+#                     print("thats work")
+#                 case units.Centimeters:
+#                     print("-"*40)
+#                     print("that works too")
+#                 case units.Millimeters:
+#                     print("-"*40)
+#                     print("that also works")
+
+#         case figure.Triangle:
+#             print("-"*40)
+#             units=my_args.p
+#             match units:
+#                 case units.Meters:
+#                     print("-"*40)
+#                     __triangle_area_()
+#                     print(triangle_area,"m^2")
+#                 case units.Centimeters:
+#                     print("-"*40)
+#                     print("that works too")
+#                 case units.Millimeters:
+#                     print("-"*40)
+#                     print("that also works")
+            
+#         case figure.Circle:
+#             print("-"*40)
+#             units=my_args.p
+#             match units:
+#                 case units.Meters:
+#                     print("-"*40)
+#                     print("thats work")
+#                 case units.Centimeters:
+#                     print("-"*40)
+#                     print("that works too")
+#                 case units.Millimeters:
+#                     print("-"*40)
+#                     print("that also works")
+#         case figure.Cylinder:
+#             print("-"*40)
+#             units=my_args.p
+#             match units:
+#                 case units.Meters:
+#                     print("-"*40)
+#                     print("thats work")
+#                 case units.Centimeters:
+#                     print("-"*40)
+#                     print("that works too")
+#                 case units.Millimeters:
+#                     print("-"*40)
+#                     print("that also works")
+#         case figure.Cube:
+#             print("-"*40)
+#             units=my_args.p
+#             match units:
+#                 case units.Meters:
+#                     print("-"*40)
+#                     print("thats work")
+#                 case units.Centimeters:
+#                     print("-"*40)
+#                     print("that works too")
+#                 case units.Millimeters:
+#                     print("-"*40)
+#                     print("that also works")
+#         case figure.Cuboid:
+#             print("-"*40)
+#             units=my_args.u
+#             match units:
+#                 case units.Meters:
+#                     print("-"*40)
+#                     print("thats work")
+
+#                 case units.Centimeters:
+#                     print("-"*40)
+#                     print("that works too")
+#                 case units.Millimeters:
+#                     print("-"*40)
+#                     print("that also works")
+# else:
+#     __Figures__()
