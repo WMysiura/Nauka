@@ -126,6 +126,7 @@ def __Figures__():
     figure = Figure(input("choose the figure:square, triangle, circle, cylinder, cube, cuboid:\n"))
     match figure:
         case figure.Square:
+            print("you choosed square")
             a=int(input("enter a"))
             b=int(input("enter b"))
             area=a**2
@@ -133,6 +134,7 @@ def __Figures__():
             __Units__(area,volume=0)
 
         case figure.Triangle:
+            print("you choosed triangle")
             print("-"*40)
             a=int(input("enter a"))
             h=int(input("enter h"))
@@ -140,11 +142,13 @@ def __Figures__():
             __Units__(area,volume=0)
             print()
         case figure.Circle:
+            print("you choosed circle")
             print("-"*40)
             r=int(input("enter r"))
             area=3.14*r**2
             __Units__(area,volume=0)
         case figure.Cylinder:
+            print("you choosed cylinder")
             print("-"*40)
             r=int(input("enter r"))
             h=int(input("enter h"))
@@ -152,12 +156,14 @@ def __Figures__():
             volume=3.14*r**2*h
             __Units__(area,volume)
         case figure.Cube:
+            print("you choosed cube")
             print("-"*40)
             a=int(input("enter a"))
             area=6*a**2
             volume=a**3
             __Units__(area,volume)
         case figure.Cuboid:
+            print("you choosed cuboid")
             print("-"*40)
             a=int(input("enter a"))
             b=int(input("enter b"))
