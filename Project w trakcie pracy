@@ -52,12 +52,14 @@
 # - interfej aplikacji i kod w języku angielskim
 # - program umieszczony na githubie
 import argparse
-import unittest
+import math
+from unittest import TestCase, TestResult
 from enum import Enum
 from pickle import TRUE
 from typing import List
 volume:int
-triangle_area=0
+pi=math.pi
+
 
 
 class Figure (Enum):
@@ -75,277 +77,315 @@ class Units(Enum):
     Centimeters = "centimeters"
     Millimeters = "millimeters"
     
-def __square_area__(a):
+def square_area(a):
     return a**2
 
-def __triangle_area__(a,h):
+# w klasie pochodnej TestCase
+# def test_square_area_with_side_equal_one(self):
+#     self.assertEqual(1, square_area(1))
+#     self.assertEqual(1, square_area(1))
+#     self.assertEqual(1, square_area(1))
+
+def triangle_area(a,h):
     return (a*h)/2
 
-def __circle_area__(r):
-    return 3.14*r**2
+def circle_area(r):
+    return pi*r**2
 
-def __cylinder_area__(r,h):
-    return 2*3.14*r**2+h*(2*r*3.14)
+def cylinder_area(r,h):
+    return 2*pi*r**2+h*(2*r*pi)
 
-def __cylinder_volume__(r,h):
-    return 3.14*r**2*h
+def cylinder_volume(r,h):
+    return pi*r**2*h
 
-def __cube_area__(a):
+def cube_area(a):
     return 6*a**2
 
-def __cube_volume__(a):
+def cube_volume(a):
     return a**3
 
-def __cuboid_area__(a,b,h):
+def cuboid_area(a,b,h):
     return 2*(a*h)+2*(a*b)+2*(b*h)
 
-def __cuboid_volume__(a,b,h):
+def cuboid_volume(a,b,h):
     return a*b*h
+class TryTesting(TestCase):
+    def test_square_area_with_side_equal_one(self):
+        self.assertEqual(1, square_area(1))
 
+        # self.assertEqual(0, square_area(0))
+        
+        # self.assertEqual(4, square_area(-2))
 
+    def test_triangle_area_with_side_equal_two(self):
+        self.assertEqual(2,triangle_area(2,2))
 
-# def __triangle_area_(a,h):
-#     return triangle_area==(a*h)/2
+    def test_circle_area_with_side_equal_two(self):
+        self.assertEqual(12.566370614359172,circle_area(2))
 
-
-def __Units__(area,volume):
+    def test_cylinder_area_with_side_equal_two(self):
+        self.assertEqual(50.26548245743669,cylinder_area(2,2))
     
-    units = Units(input("choose the unit: meters, centimeters millimeters:\n"))
-    match units:
-        case units.Meters:
-            print("-"*40)
-            print("area=",area,"m^2\nvolume=",volume,"m^3")
-        case units.Centimeters:
-            print("-"*40)
-            print("area=",area,"cm^2\nvolume=",volume,"cm^3")
-        case units.Millimeters:
-            print("-"*40)
-            print("area=",area,"mm^2\nvolume=",volume,"mm^3")
+    def test_cylinder_volume_with_side_equal_two(self):
+        self.assertEqual(25.132741228718345,cylinder_volume(2,2))
 
-def __Figures__():
-    figure = Figure(input("choose the figure:square, triangle, circle, cylinder, cube, cuboid:\n"))
-    match figure:
-        case figure.Square:
-            print("you choosed square")
-            a=int(input("enter a"))
-            b=int(input("enter b"))
-            area=a**2
-            print("-"*40)
-            __Units__(area,volume=0)
+    def test_cube_area_with_side_equal_three(self):
+        self.assertEqual(54,cube_area(3))
 
-        case figure.Triangle:
-            print("you choosed triangle")
-            print("-"*40)
-            a=int(input("enter a"))
-            h=int(input("enter h"))
-            area=(a*h)/2
-            __Units__(area,volume=0)
-            print()
-        case figure.Circle:
-            print("you choosed circle")
-            print("-"*40)
-            r=int(input("enter r"))
-            area=3.14*r**2
-            __Units__(area,volume=0)
-        case figure.Cylinder:
-            print("you choosed cylinder")
-            print("-"*40)
-            r=int(input("enter r"))
-            h=int(input("enter h"))
-            area=2*3.14*r**2+h*(2*r*3.14)
-            volume=3.14*r**2*h
-            __Units__(area,volume)
-        case figure.Cube:
-            print("you choosed cube")
-            print("-"*40)
-            a=int(input("enter a"))
-            area=6*a**2
-            volume=a**3
-            __Units__(area,volume)
-        case figure.Cuboid:
-            print("you choosed cuboid")
-            print("-"*40)
-            a=int(input("enter a"))
-            b=int(input("enter b"))
-            h=int(input("enter h"))
-            area=2*(a*h)+2*(a*b)+2*(b*h)
-            volume=a*b*h
-            __Units__(area,volume)
+    def test_cube_volume_with_side_equal_three(self):
+        self.assertEqual(27,cube_volume(3))
 
-parser = argparse.ArgumentParser(prog="math",usage='%(prog)s [options]', description='Aplication Math 1.0')
-parser.add_argument("-i","--interactive",action="store_true", help="interactive mode")
-parser.add_argument("-f","--figure", help =" enum[square,triangle, circle, cylinder, cube]", default = "def")
-parser.add_argument("-p","--params",action="append",help= "list of parameters depends on figure")
-parser.parse_args("-p 1 -p 2 -p 3".split())
-parser.add_argument("-u","--unit",type=str, help = "enum[meters, centimeters, millimeters]", default = "def")
+    def test_cuboid_area_with_side_equal_two(self):
+        self.assertEqual(24,cuboid_area(2,2,2))
 
+    def test_cuboid_volume_with_side_equal_two(self):
+        self.assertEqual(8,cuboid_volume(2,2,2))
+myTest = TryTesting()
 
-my_args = parser.parse_args()
-converted=vars(my_args)
-# print(converted)
-# converted={}
-# converted["params"]=[5,5,2]
-# converted["interactive"]=False
-# converted["figure"]="cuboid"
-# converted["unit"]="meters"
-
-# print(type(my_args.p))
-# print(type(converted["params"][0]))
-
-# h=int(converted["params"][2])
-# print(a, b, h)
-
-# print(converted["interactive"])
-
-# try:
-
-#     if my_args.i == "0":
-#         print("good")
+myTest.test_square_area_with_side_equal_one()
+myTest.test_triangle_area_with_side_equal_two()
+myTest.test_circle_area_with_side_equal_two()
+myTest.test_cylinder_area_with_side_equal_two()
+myTest.test_cylinder_volume_with_side_equal_two()
+myTest.test_cube_area_with_side_equal_three()
+myTest.test_cube_volume_with_side_equal_three()
+myTest.test_cuboid_area_with_side_equal_two()
+myTest.test_cuboid_volume_with_side_equal_two
+# def units(area,volume):
     
-# except:
-#     if my_args.interactive != "def":
-#         print("")
-def square_message(area, unit):
-    return "Square area="+ str(area)+" "+unit
+#     units = Units(input("choose the unit: meters, centimeters millimeters:\n"))
+#     match units:
+#         case units.Meters:
+#             print("-"*40)
+#             print("area=",area,"m^2\nvolume=",volume,"m^3")
+#         case units.Centimeters:
+#             print("-"*40)
+#             print("area=",area,"cm^2\nvolume=",volume,"cm^3")
+#         case units.Millimeters:
+#             print("-"*40)
+#             print("area=",area,"mm^2\nvolume=",volume,"mm^3")
 
-def triangle_message(area,unit):
-    return "Triangle area="+str(area)+" "+unit
+# def Figures():
+#     figure = Figure(input("choose the figure:square, triangle, circle, cylinder, cube, cuboid:\n"))
+#     match figure:
+#         case figure.Square:
+#             print("you choosed square")
+#             a=int(input("enter a"))
+#             b=int(input("enter b"))
+#             area=a**2
+#             print("-"*40)
+#             units(area,volume=0)
 
-def circle_message(area, unit):
-    return "circle area="+ str(area)+" "+unit
+#         case figure.Triangle:
+#             print("you choosed triangle")
+#             print("-"*40)
+#             a=int(input("enter a"))
+#             h=int(input("enter h"))
+#             area=(a*h)/2
+#             units(area,volume=0)
+#         case figure.Circle:
+#             print("you choosed circle")
+#             print("-"*40)
+#             r=int(input("enter r"))
+#             area=3.14*r**2
+#             units(area,volume=0)
+#         case figure.Cylinder:
+#             print("you choosed cylinder")
+#             print("-"*40)
+#             r=int(input("enter r"))
+#             h=int(input("enter h"))
+#             area=2*3.14*r**2+h*(2*r*3.14)
+#             volume=3.14*r**2*h
+#             units(area,volume)
+#         case figure.Cube:
+#             print("you choosed cube")
+#             print("-"*40)
+#             a=int(input("enter a"))
+#             area=6*a**2
+#             volume=a**3
+#             units(area,volume)
+#         case figure.Cuboid:
+#             print("you choosed cuboid")
+#             print("-"*40)
+#             a=int(input("enter a"))
+#             b=int(input("enter b"))
+#             h=int(input("enter h"))
+#             area=2*(a*h)+2*(a*b)+2*(b*h)
+#             volume=a*b*h
+#             units(area,volume)
 
-def cylinder_message(area,unit1,volume,unit2):
-    return "cylinder area="+ str(area)+" "+unit1+"\n"+"cylinder volume="+str(volume)+" "+unit2
+# parser = argparse.ArgumentParser(prog="math",usage='%(prog)s [options]', description='Aplication Math 1.0')
+# parser.add_argument("-i","--interactive",action="store_true", help="interactive mode")
+# parser.add_argument("-f","--figure", help =" enum[square,triangle, circle, cylinder, cube]", default = "def")
+# parser.add_argument("-p","--params",action="append",help= "list of parameters depends on figure")
+# parser.parse_args("-p 1 -p 2 -p 3".split())
+# parser.add_argument("-u","--unit",type=str, help = "enum[meters, centimeters, millimeters]", default = "def")
 
-def cube_message(area,unit1,volume,unit2):
-    return "cube area="+ str(area)+" "+unit1+"\n"+"cube volume="+str(volume)+" "+unit2
 
-def cuboid_message(area,unit1,volume,unit2):
-    return "cuboid area="+ str(area)+" "+unit1+"\n"+"cuboid volume="+str(volume)+" "+unit2
+# my_args = parser.parse_args()
+# converted=vars(my_args)
+# # print(converted)
+# # converted={}
+# # converted["params"]=[5,5,2]
+# # converted["interactive"]=False
+# # converted["figure"]="cuboid"
+# # converted["unit"]="meters"
+
+# # print(type(my_args.p))
+# # print(type(converted["params"][0]))
+
+# # h=int(converted["params"][2])
+# # print(a, b, h)
+
+# # print(converted["interactive"])
+
+# # try:
+
+# #     if my_args.i == "0":
+# #         print("good")
     
+# # except:
+# #     if my_args.interactive != "def":
+# #         print("")
+# def square_message(area, unit):
+#     return "Square area="+ str(area)+" "+unit
 
-if converted["interactive"]!=True:
-    figure=Figure(converted["figure"])
-    match figure:
-        case figure.Square:
-            print("-"*40)
-            units=Units(converted["unit"])
-            match units:
-                case units.Meters:
-                    a=int(converted["params"][0])
-                    u="m^2"
-                    print(square_message(__square_area__(a),u))
-                case units.Centimeters:
-                    a=int(converted["params"][0])
-                    u="cm^2"
-                    print(square_message(__square_area__(a),u))
-                case units.Millimeters:
-                    a=int(converted["params"][0])
-                    u="mm^2"
-                    print(square_message(__square_area__(a),u))
+# def triangle_message(area,unit):
+#     return "Triangle area="+str(area)+" "+unit
 
-        case figure.Triangle:
-            print("-"*40)
-            units=Units(converted["unit"])
-            match units:
-                case units.Meters:
-                    r=int(converted["params"][0])
-                    h=int(converted["params"][1])
-                    u="m2"
-                    print(triangle_message(__triangle_area__(r,h),u))
-                case units.Centimeters:
-                    r=int(converted["params"][0])
-                    h=int(converted["params"][1])
-                    u="cm2"
-                    print(triangle_message(__triangle_area__(r,h),u))
-                case units.Millimeters:
-                    r=int(converted["params"][0])
-                    h=int(converted["params"][1])
-                    u="mm2"
-                    print(triangle_message(__triangle_area__(r,h),u))
+# def circle_message(area, unit):
+#     return "circle area="+ str(area)+" "+unit
+
+# def cylinder_message(area,unit1,volume,unit2):
+#     return "cylinder area="+ str(area)+" "+unit1+"\n"+"cylinder volume="+str(volume)+" "+unit2
+
+# def cube_message(area,unit1,volume,unit2):
+#     return "cube area="+ str(area)+" "+unit1+"\n"+"cube volume="+str(volume)+" "+unit2
+
+# def cuboid_message(area,unit1,volume,unit2):
+#     return "cuboid area="+ str(area)+" "+unit1+"\n"+"cuboid volume="+str(volume)+" "+unit2
+    
+# if converted["interactive"]!=True:
+#     figure=Figure(converted["figure"])
+#     match figure:
+#         case figure.Square:
+#             print("-"*40)
+#             units=Units(converted["unit"])
+#             match units:
+#                 case units.Meters:
+#                     a=int(converted["params"][0])
+#                     u="m^2"
+#                     print(square_message(square_area(a),u))
+#                 case units.Centimeters:
+#                     a=int(converted["params"][0])
+#                     u="cm^2"
+#                     print(square_message(square_area(a),u))
+#                 case units.Millimeters:
+#                     a=int(converted["params"][0])
+#                     u="mm^2"
+#                     print(square_message(square_area(a),u))
+
+#         case figure.Triangle:
+#             print("-"*40)
+#             units=Units(converted["unit"])
+#             match units:
+#                 case units.Meters:
+#                     r=int(converted["params"][0])
+#                     h=int(converted["params"][1])
+#                     u="m2"
+#                     print(triangle_message(triangle_area(r,h),u))
+#                 case units.Centimeters:
+#                     r=int(converted["params"][0])
+#                     h=int(converted["params"][1])
+#                     u="cm2"
+#                     print(triangle_message(triangle_area(r,h),u))
+#                 case units.Millimeters:
+#                     r=int(converted["params"][0])
+#                     h=int(converted["params"][1])
+#                     u="mm2"
+#                     print(triangle_message(triangle_area(r,h),u))
             
-        case figure.Circle:
-            print("-"*40)
-            units=Units(converted["unit"])
-            match units:
-                case units.Meters:
-                    a=int(converted["params"][0])
-                    u="m^2"
-                    print(circle_message(__circle_area__(a),u))
-                case units.Centimeters:
-                    a=int(converted["params"][0])
-                    u="cm^2"
-                    print(circle_message(__circle_area__(a),u))
-                case units.Millimeters:
-                    a=int(converted["params"][0])
-                    u="mm^2"
-                    print(circle_message(__circle_area__(a),u))
-        case figure.Cylinder:
-            print("-"*40)
-            units=Units(converted["unit"])
-            match units:
-                case units.Meters:
-                    r=int(converted["params"][0])
-                    h=int(converted["params"][1])
-                    u1="m^2"
-                    u2="m^3"
-                    print(cylinder_message(__cylinder_area__(r,h),u1,__cylinder_volume__(r,h),u2))
-                case units.Centimeters:
-                    r=int(converted["params"][0])
-                    h=int(converted["params"][1])
-                    u1="cm^2"
-                    u2="cm^3"
-                    print(cylinder_message(__cylinder_area__(r,h),u1,__cylinder_volume__(r,h),u2))
-                case units.Millimeters:
-                    r=int(converted["params"][0])
-                    h=int(converted["params"][1])
-                    u1="mm^2"
-                    u2="mm^3"
-                    print(cylinder_message(__cylinder_area__(r,h),u1,__cylinder_volume__(r,h),u2))
-        case figure.Cube:
-            print("-"*40)
-            units=Units(converted["unit"])
-            match units:
-                case units.Meters:
-                    a=int(converted["params"][0])
-                    u1="m^2"
-                    u2="m^3"
-                    print(cube_message(__cube_area__(a),u1,__cube_volume__(a),u2))
-                case units.Centimeters:
-                    a=int(converted["params"][0])
-                    u1="cm^2"
-                    u2="cm^3"
-                    print(cube_message(__cube_area__(a),u1,__cube_volume__(a),u2))
-                case units.Millimeters:
-                    a=int(converted["params"][0])
-                    u1="mm^2"
-                    u2="mm^3"
-                    print(cube_message(__cube_area__(a),u1,__cube_volume__(a),u2))
-        case figure.Cuboid:
-            print("-"*40)
-            units=Units(converted["unit"])
-            match units:
-                case units.Meters:
-                    a=int(converted["params"][0])
-                    b=int(converted["params"][1])
-                    h=int(converted["params"][2])
-                    u1="m^2"
-                    u2="m^3"
-                    print(cuboid_message(__cuboid_area__(a,b,h),u1,__cuboid_volume__(a,b,h),u2))
-
-                case units.Centimeters:
-                    a=int(converted["params"][0])
-                    b=int(converted["params"][1])
-                    h=int(converted["params"][2])
-                    u1="cm^2"
-                    u2="cm^3"
-                    print(cuboid_message(__cuboid_area__(a,b,h),u1,__cuboid_volume__(a,b,h),u2))
-                case units.Millimeters:
-                    a=int(converted["params"][0])
-                    b=int(converted["params"][1])
-                    h=int(converted["params"][2])
-                    u1="mm^2"
-                    u2="mm^3"
-                    print(cuboid_message(__cuboid_area__(a,b,h),u1,__cuboid_volume__(a,b,h),u2))
-else:
-    __Figures__()
+#         case figure.Circle:
+#             print("-"*40)
+#             units=Units(converted["unit"])
+#             match units:
+#                 case units.Meters:
+#                     a=int(converted["params"][0])
+#                     u="m^2"
+#                     print(circle_message(circle_area(a),u))
+#                 case units.Centimeters:
+#                     a=int(converted["params"][0])
+#                     u="cm^2"
+#                     print(circle_message(circle_area(a),u))
+#                 case units.Millimeters:
+#                     a=int(converted["params"][0])
+#                     u="mm^2"
+#                     print(circle_message(circle_area(a),u))
+#         case figure.Cylinder:
+#             print("-"*40)
+#             units=Units(converted["unit"])
+#             match units:
+#                 case units.Meters:
+#                     r=int(converted["params"][0])
+#                     h=int(converted["params"][1])
+#                     u1="m^2"
+#                     u2="m^3"
+#                     print(cylinder_message(cylinder_area(r,h),u1,cylinder_volume(r,h),u2))
+#                 case units.Centimeters:
+#                     r=int(converted["params"][0])
+#                     h=int(converted["params"][1])
+#                     u1="cm^2"
+#                     u2="cm^3"
+#                     print(cylinder_message(cylinder_area(r,h),u1,cylinder_volume(r,h),u2))
+#                 case units.Millimeters:
+#                     r=int(converted["params"][0])
+#                     h=int(converted["params"][1])
+#                     u1="mm^2"
+#                     u2="mm^3"
+#                     print(cylinder_message(cylinder_area(r,h),u1,cylinder_volume(r,h),u2))
+#         case figure.Cube:
+#             print("-"*40)
+#             units=Units(converted["unit"])
+#             match units:
+#                 case units.Meters:
+#                     a=int(converted["params"][0])
+#                     u1="m^2"
+#                     u2="m^3"
+#                     print(cube_message(cube_area(a),u1,cube_volume(a),u2))
+#                 case units.Centimeters:
+#                     a=int(converted["params"][0])
+#                     u1="cm^2"
+#                     u2="cm^3"
+#                     print(cube_message(cube_area(a),u1,cube_volume(a),u2))
+#                 case units.Millimeters:
+#                     a=int(converted["params"][0])
+#                     u1="mm^2"
+#                     u2="mm^3"
+#                     print(cube_message(cube_area(a),u1,cube_volume(a),u2))
+#         case figure.Cuboid:
+#             print("-"*40)
+#             units=Units(converted["unit"])
+#             match units:
+#                 case units.Meters:
+#                     a=int(converted["params"][0])
+#                     b=int(converted["params"][1])
+#                     h=int(converted["params"][2])
+#                     u1="m^2"
+#                     u2="m^3"
+#                     print(cuboid_message(cuboid_area(a,b,h),u1,cuboid_volume(a,b,h),u2))
+#                 case units.Centimeters:
+#                     a=int(converted["params"][0])
+#                     b=int(converted["params"][1])
+#                     h=int(converted["params"][2])
+#                     u1="cm^2"
+#                     u2="cm^3"
+#                     print(cuboid_message(cuboid_area(a,b,h),u1,cuboid_volume(a,b,h),u2))
+#                 case units.Millimeters:
+#                     a=int(converted["params"][0])
+#                     b=int(converted["params"][1])
+#                     h=int(converted["params"][2])
+#                     u1="mm^2"
+#                     u2="mm^3"
+#                     print(cuboid_message(cuboid_area(a,b,h),u1,cuboid_volume(a,b,h),u2))
+# else:
+#     Figures()
